@@ -1,0 +1,87 @@
+* {
+    padding: 0;
+    margin: 0;
+    font-family: 'Itim', cursive;
+    /*font-family: 'Abril Fatface', cursive;*/
+}
+
+.background {
+    background-color: #12181B;
+    height: 130vh;
+    padding-top: 10px;
+}
+
+.title {
+    color: white;
+    text-align: center;
+    font-size: 60px;
+    margin-top: 10%;
+    box-shadow: 10px 10px 100px red, -10px -10px 100px blue, 10px -10px 100px red, -10px 10px 100px blue;
+}
+
+.display {
+    color: white;
+    font-size: 30px;
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 50px;
+}
+
+.hide {
+    display: none;
+}
+
+.container {
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 34% 34% 34%;
+    grid-template-rows: 34% 34% 34%;
+    max-width: 300px;
+}
+
+.tile {
+    border: 3px solid black;
+    min-width: 100px;
+    min-height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 60px;
+    cursor: pointer;
+}
+
+.playerX {
+    /*background-color: #000000;*/
+    color: #a366ff;
+    border-radius: 10%;
+    /*box-shadow: 1px 1px 10px red, -1px -1px 10px blue, 1px -1px 10px red, -1px 1px 10px blue;*/
+}
+
+.playerO {
+    /*background-color: #ffffff; */
+    color: #ff3300;
+    border-radius: 10%;
+}
+
+.controls {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+}
+
+.controls button {
+    color: white;
+    padding: 8px;
+    border-radius: 8px;
+    border: none;
+    font-size: 20px;
+    margin-left: 10px;
+    margin-top: 50px;
+}
+
+#reset {
+    background-color: #000000;
+    box-shadow: 8px 8px 80px red, -8px -8px 80px blue, 8px -8px 80px red, -8px 8px 80px blue;
+}
