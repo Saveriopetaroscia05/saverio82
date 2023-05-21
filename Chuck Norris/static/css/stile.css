@@ -1,0 +1,136 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Concert One', sans-serif;
+}
+
+body {
+    background-color: rgba(240, 240, 201, 1);
+}
+
+.centerAlignment {
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.textCenter {
+    text-align: center;
+}
+
+.flex {
+    display: flex;
+}
+
+.urlContainer .disabled {
+    background-color: #E1E1E1;
+}
+
+.mainContainer {
+    max-width: 84.65%;
+}
+
+.titolo {
+    font-size: 10.9vw;
+    margin: 0;
+    position: relative;
+    color: #D8572A;
+    text-shadow: -1.5px 0 black, 0 1.5px black, 1.5px 0 black, 0 -1.5px black;
+}
+
+.titolo::after {
+    content: "";
+    position: absolute;
+    width: 30vw;
+    height: 25vw;
+    left: 88%;
+    line-height: 120%;
+    transform: translateX(-50%);
+    top: 32%;
+    background-image: url(../images/gun.png);
+    background-size: cover;
+}
+
+.sentenceBox {
+    border-radius: 20px;
+    background-color: #E1E1E1;
+    width: 100%;
+    height: 114px;
+    margin-top: 129px;
+    justify-content: center;
+    align-items: center;
+}
+
+.categoriesBox {
+    margin-top: 54px;
+}
+
+.Immagine {
+    width: 104px;
+}
+
+.categoriesSelector {
+    width: 100%;
+    height: 28px;
+    cursor: pointer;
+    border-radius: 10px;
+    border: none;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+
+.Bottone {
+    margin-top: 75px;
+}
+
+.requestButtone {
+    width: 100%;
+    height: 48px;
+    background-color: #780116;
+    color: rgba(255, 255, 255, 1);
+    cursor: pointer;
+    font-size: 16px;
+    border: none;
+    border-radius: 10px;
+}
+
+.urlButtone {
+    margin-top: 18px;
+}
+
+.copyButtone {
+    width: 43.02%;
+    height: 33px;
+    background-color: #D8572A;
+    color: rgba(255, 255, 255, 1);
+    cursor: pointer;
+    border: none;
+    border-radius: 10px;
+    position: relative;
+}
+
+.copyButtone::after {
+    content: "";
+    background-image: url("../images/copy-icons.png");
+    width: 15px;
+    height: 15px;
+    position: absolute;
+    left: calc(100% - 20px);
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.urlContainer {
+    margin-top: 70px;
+}
+
+.urlBox {
+    border-radius: 10px;
+    background-color: #661B01;
+    transition: all 0.5s ease-in-out;
+    width: 100%;
+    height: 45px;
+    font-size: 17px;
+    color: #FFF;
+    text-decoration: none;
+    justify-content: center;
+    align-items: center;
+}
