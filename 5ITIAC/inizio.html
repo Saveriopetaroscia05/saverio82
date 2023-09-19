@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <style>
+        #map {
+            height: 200px;
+            width: 640px;
+        }
+        
+        #hero {
+            width: 100%;
+            height: 100vh;
+            background-image: url(https://images.pexels.com/photos/1118873/pexels-photo-1118873.jpeg?auto=compress&cs=tinysrgb&w=1920);
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        
+        input {
+            width: 100%;
+        }
+        
+        .flex-fill {
+            flex: 1 !important
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <section id="hero" class="d-flex justify-content-center align-items-center">
+        <div class="content text-center text-white">
+            <h1>Previsioni del tempo</h1>
+            <h2>Inserisci le coordinate per avere info sul meteo</h2>
+            <div id="map"></div>
+            <div class="formWrapper">
+                <form action="" method="get">
+                    <div class="formRow d-flex">
+                        <div class="field flex-fill me-5">
+                            <label for="lat">Latitudine</label>
+                            <input class="d-block" type="text" name="lat" id="lat" placeholder="51.44">
+                        </div>
+                        <div class="field flex-fill ms-5">
+                            <label for="lng">Longitudine</label>
+                            <input class="d-block" type="text" name="lng" id="lng" placeholder="51.44">
+                        </div>
+                    </div>
+                    <div class="formRow d-flex">
+                        <div class="field flex-fill me-5">
+                            <input class="d-block btn btn-light" type="reset" value="Reset">
+                        </div>
+                        <div class="field flex-fill ms-5">
+                            <input class="d-block btn btn-success" type="submit" value="Richiedi i dati">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        const map = L.map('map').setView([51.505, -0.09], 13);
+
+        const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+        }).addTo(map);
+
+        function onMapClick(e) {
+            const latitude = e.latlng.lat;
+            const longitude = e.latlng.lng;
+
+            // Imposta la latitudine nel campo di input "lat"
+            const latInput = document.getElementById("lat");
+            latInput.value = latitude;
+
+            // Imposta la longitudine nel campo di input "lng"
+            const lngInput = document.getElementById("lng");
+            lngInput.value = longitude;
+
+            const popup = L.popup()
+                .setLatLng(e.latlng)
+                .setContent(`You clicked the map at ${e.latlng.toString()}`)
+                .openOn(map);
+        }
+
+        map.on('click', onMapClick);
+
+        document.querySelector("form").addEventListener("submit", function(event) {
+            event.preventDefault()
+            let latitudine = document.querySelector("#lat").value
+            let longitudine = document.querySelector("#lng").value
+
+            console.log(latitudine, longitudine)
+
+            let url = `https://api.open-meteo.com/v1/forecast?latitude=${latitudine}&longitude=${longitudine}&hourly=temperature_2m,relativehumidity_2m,precipitation_probability,windspeed_10m`
+            console.log(url)
+
+            fetch(url).then(function(resp) {
+                return resp.json()
+            }).then(function(data) {
+                console.log(data.hourly.time)
+                console.log(data.hourly.temperature_2m)
+            })
+        });
+    </script>
+</body>
+
+</html>
