@@ -1,29 +1,44 @@
-const map = L.map('map').setView([51.505, -0.09], 13);
+navigator.geolocation.getCurrentPosition(
+    function(event) {
+        createMap(event.coords.latitude, event.coords.longitude)
+    },
+    function(event) {
+        createMap(81.76105839473563, -795.5419921875001)
+    }
+);
 
-const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 19,
-    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-}).addTo(map);
+function createMap(lat, lng) {
+    const map = L.map('map').setView([lat, lng], 13);
 
-function onMapClick(e) {
-    const latitude = e.latlng.lat;
-    const longitude = e.latlng.lng;
 
-    // Imposta la latitudine nel campo di input "lat"
-    const latInput = document.getElementById("lat");
-    latInput.value = latitude;
+    const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    }).addTo(map);
+    const marker = L.marker([lat, lng]).addTo(map);
 
-    // Imposta la longitudine nel campo di input "lng"
-    const lngInput = document.getElementById("lng");
-    lngInput.value = longitude;
+    function onMapClick(e) {
+        const latitude = e.latlng.lat;
+        const longitude = e.latlng.lng;
 
-    const popup = L.popup()
-        .setLatLng(e.latlng)
-        .setContent(`You clicked the map at ${e.latlng.toString()}`)
-        .openOn(map);
-}
+        // Imposta la latitudine nel campo di input "lat"
+        const latInput = document.getElementById("lat");
+        latInput.value = latitude;
 
-map.on('click', onMapClick);
+        // Imposta la longitudine nel campo di input "lng"
+        const lngInput = document.getElementById("lng");
+        lngInput.value = longitude;
+
+        const popup = L.popup()
+            .setLatLng(e.latlng)
+            .setContent(`You clicked the map at ${e.latlng.toString()}`)
+            .openOn(map);
+    }
+
+    map.on('click', onMapClick);
+};
+
+
 
 document.querySelector("form").addEventListener("submit", function(event) {
     event.preventDefault()
