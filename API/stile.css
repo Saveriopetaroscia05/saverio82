@@ -1,0 +1,28 @@
+#userList {
+    list-style-type: none;
+    padding: 0;
+}
+
+#userList li {
+    margin-bottom: 10px;
+    border: 1px solid #EDEEFF;
+    padding: 10px;
+    background-color: #686DA0;
+    color: #CFA616;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    background-color: #143C8C;
+}
+
+h1 {
+    color: #CFA616;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+button {
+    background-color: #CFA616;
+    color: #143C8C;
+    font-family: Arial, Helvetica, sans-serif;
+}

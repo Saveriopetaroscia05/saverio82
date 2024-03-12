@@ -55,5 +55,61 @@ document.querySelector("form").addEventListener("submit", function(event) {
     }).then(function(data) {
         console.log(data.hourly.time)
         console.log(data.hourly.temperature_2m)
+        console.log(data.hourly.relativehumidity_2m)
+            // Array di indici delle date specifiche da visualizzare
+        const specificDateIndices = [1, 7, 33, 44, 55, 69, 99, 104, 167, ];
+
+        // Estrai le date corrispondenti agli indici specifici
+        const specificDates = specificDateIndices.map(index => data.hourly.time[index]);
+
+        // Estrai le temperature corrispondenti agli indici specifici
+        const specificTemperatures = specificDateIndices.map(index => data.hourly.temperature_2m[index]);
+        const specificHumidity = specificDateIndices.map(index => data.hourly.relativehumidity_2m[index]);
+
+        // Aggiorna il grafico con le date specifiche e le temperature corrispondenti
+        updateChart(myChart, specificDates, specificTemperatures, specificHumidity);
     })
 });
+
+function updateChart(chart, labels, temperatureData, humidityData) {
+    chart.data.labels = labels;
+    chart.data.datasets[0].data = temperatureData;
+    chart.data.datasets[1].data = humidityData;
+    chart.update();
+}
+let canvas = document.querySelector("canvas")
+
+let config = {
+    type: 'line',
+    data: {
+        labels: [],
+        datasets: [{
+                label: 'Temperatura media',
+                data: [],
+                fill: false,
+                borderColor: 'rgb(75, 192, 192)',
+                tension: 0.1,
+                yAxisID: 'y',
+            },
+            {
+                label: 'Umidità media',
+                data: [],
+                fill: false,
+                borderColor: 'rgb(255, 0, 0)',
+                tension: 0.1,
+                yAxisID: 'y1',
+            }
+        ]
+    },
+    scales: {
+        y: {
+            type: 'linear',
+            position: 'left',
+        },
+        y1: {
+            type: 'linear',
+            position: 'left'
+        }
+    }
+}
+const myChart = new Chart(canvas, config)

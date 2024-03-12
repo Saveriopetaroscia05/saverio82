@@ -19,3 +19,16 @@ input {
 .flex-fill {
     flex: 1 !important
 }
+
+#map,
+.wrapper {
+    height: 200px;
+    width: 50vw;
+    margin: 0 auto;
+}
+
+#canvasWrapper canvas {
+    width: 1000px;
+    height: 1000px;
+    margin: 0 auto;
+}
